@@ -33,6 +33,7 @@ return {
 			})
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
+        cmd = { "clangd", "--compile-commands-dir=Build" },
 			})
 
 			-- Setup Keymaps

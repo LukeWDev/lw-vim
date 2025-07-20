@@ -6,6 +6,25 @@ vim.wo.number = true
 vim.g.mapleader = " "
 vim.opt.winbar = "%=%{strftime('%H:%M')}"
 
+-- Refresh window timer
 vim.fn.timer_start(60000, function()
   vim.cmd("redrawstatus")  -- works for winbar too
 end, { ["repeat"] = -1 })
+
+-- Auto Format On Save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.cpp", "*.h", "*.hpp", "*.c" },
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
+})
+
+-- CMake Commands
+vim.api.nvim_create_user_command("CMakeBuild", function()
+  vim.cmd("!cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B Build")
+
+  vim.cmd("!cmake --build Build")
+end, {})
+
+vim.keymap.set("n", "<leader>cb", ":CMakeBuild<CR>", { noremap = true, silent = true })
+

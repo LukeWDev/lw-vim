@@ -50,7 +50,7 @@ return {
 					type = "codelldb",
 					request = "launch",
 					program = function()
-						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/Binaries/", "file")
 					end,
 					cwd = "${workspaceFolder}",
 					stopOnEntry = false,
@@ -58,7 +58,7 @@ return {
 			}
 
 			dap.listeners.before.attach.dapui_config = function()
-				dapui.open()
+				dapui.open()--
 			end
 			dap.listeners.before.launch.dapui_config = function()
 				dapui.open()
