@@ -8,7 +8,7 @@ vim.opt.winbar = "%=%{strftime('%H:%M')}"
 
 -- Refresh window timer
 vim.fn.timer_start(60000, function()
-  vim.cmd("redrawstatus")  -- works for winbar too
+  vim.cmd("redrawstatus") -- works for winbar too
 end, { ["repeat"] = -1 })
 
 -- Auto Format On Save
@@ -34,4 +34,12 @@ vim.api.nvim_create_user_command("CMakeBuild", function()
 end, {})
 
 vim.keymap.set("n", "<leader>cb", ":CMakeBuild<CR>", { noremap = true, silent = true })
+
+-- General Keybinds
+vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>sh", ":split<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<A-h>', '<C-w>h', { noremap = true }) -- Move to Left Split
+vim.keymap.set('n', '<A-j>', '<C-w>j', { noremap = true }) -- Move to Bottom Split
+vim.keymap.set('n', '<A-k>', '<C-w>k', { noremap = true }) -- Move to Top Split
+vim.keymap.set('n', '<A-l>', '<C-w>l', { noremap = true }) -- Move to Right Split
 
