@@ -21,8 +21,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- CMake Commands
 vim.api.nvim_create_user_command("CMakeBuild", function()
-  vim.cmd("!cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B Build")
-
+  local cmd = table.concat({
+    "cmake",
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+    "-DCMAKE_BUILD_TYPE=Debug",
+    "-S .",
+    "-B Build"
+  }, " ")
+  --vim.cmd("!cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B Build")
+  vim.cmd("!" .. cmd)
   vim.cmd("!cmake --build Build")
 end, {})
 
