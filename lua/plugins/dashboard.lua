@@ -5,17 +5,28 @@ return {
     require("dashboard").setup({
       theme = "hyper",
       config = {
+        header = {
+          [[                                                    ]],
+	[[ ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ]],
+	[[ ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ]],
+	[[ ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ]],
+	[[ ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ]],
+	[[ ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ]],
+	[[ ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ]],
+	[[                                                    ]],
+        },
         shortcut = {},
-        packages = { enable = true }, -- show how many plugins neovim loaded
-        -- limit how many projects list, action when you press key or enter it will run this action.
-        -- action can be a function type, e.g.
-        -- action = func(path) vim.cmd('Telescope find_files cwd=' .. path) end
+        packages = { enable = true },
         project = {
           enable = true,
           limit = 8,
           icon = "󰝰 ",
           label = "Recent Projects",
-          action = "",
+          --action = "Telescope find_files cwd=",
+          action = function(path)
+            vim.cmd("cd " .. path)
+            require("telescope.builtin").find_files({ cwd = path })
+          end,
         },
         mru = { enable = true, limit = 10, icon = " ", label = "Recent Files", cwd_only = false },
         footer = {}, -- footer
