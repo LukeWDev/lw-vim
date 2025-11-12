@@ -28,9 +28,8 @@ vim.api.nvim_create_user_command("CMakeBuild", function()
     "-S .",
     "-B Build"
   }, " ")
-  --vim.cmd("!cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B Build")
   vim.cmd("!" .. cmd)
-  vim.cmd("!cmake --build Build")
+  vim.cmd("!cmake --build Build --parallel")
 end, {})
 
 vim.keymap.set("n", "<leader>cb", ":CMakeBuild<CR>", { noremap = true, silent = true })
