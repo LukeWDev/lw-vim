@@ -14,7 +14,7 @@ keymap({"n", "v"}, "<leader>y", '"+y', opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
--- Remove Highlighting when ESC
+-- remove highlight on esc
 keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 -- toggle explorer
@@ -61,11 +61,21 @@ keymap({"n", "v"}, "<leader>a", "<cmd>lua require('vscode').action('workbench.ac
 -- quick fix
 keymap({"n", "v"}, "<leader>ca", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>", opts)
 
+-- show problems
+keymap({"n", "v"}, "<leader>sp", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>", opts)
+
+-- navigate action markers
+keymap({"n", "v"}, "<leader><right>", "<cmd>lua require('vscode').action('editor.action.marker.next')<CR>", opts)
+keymap({"n", "v"}, "<leader><left>", "<cmd>lua require('vscode').action('editor.action.marker.previous')<CR>", opts)
+
 -- build
 keymap({"n", "v"}, "<leader>cb", "<cmd>lua require('vscode').action('cmake.build')<CR>", opts)
 
 -- open header/source
 keymap({"n", "v"}, "<leader>o", "<cmd>lua require('vscode').action('clangd.switchheadersource')<CR>", opts)
+
+-- format
+keymap("n", "<leader>gf", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>", opts)
 
 -- go to definition
 keymap({"n", "v"}, "<leader>gd", "<cmd>lua require('vscode').action('editor.action.revealDefinition')<CR>", opts)
@@ -75,3 +85,15 @@ keymap({"n", "v"}, "<leader>gc", "<cmd>lua require('vscode').action('editor.acti
 
 -- return from definition
 keymap({"n", "v"}, "<leader>rd", "<cmd>lua require('vscode').action('workbench.action.navigateBack')<CR>", opts)
+
+-- rename symbol
+keymap({"n", "v"}, "<leader>rn", "<cmd>lua require('vscode').action('editor.action.rename')<CR>", opts)
+
+-- find references
+keymap({"n", "v"}, "<leader>fr", "<cmd>lua require('vscode').action('references-view.findReferences')<CR>", opts)
+
+-- find implementations
+keymap({"n", "v"}, "<leader>fi", "<cmd>lua require('vscode').action('references-view.findImplementations')<CR>", opts)
+
+-- go to line
+keymap({"n", "v"}, "<leader>gl", "<cmd>lua require('vscode').action('workbench.action.gotoLine')<CR>", opts)
